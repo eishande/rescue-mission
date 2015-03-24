@@ -13,7 +13,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem "factory_girl_rails", "~> 4.0"
+
+gem "devise"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -45,5 +46,6 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'pry'
+  gem "factory_girl_rails", "~> 4.0"
 
 end
