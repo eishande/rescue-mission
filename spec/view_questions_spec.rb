@@ -16,20 +16,21 @@ feature 'view questions', %Q{
 
     click_button 'Log in'
   end
+
   # Acceptance Criteria
  #  I must see the title of each question
  #  I must see questions listed in order, most recently posted first
 
   scenario 'visitor views all questions' do
-
     question = FactoryGirl.create(:question)
     visit '/'
     expect(page).to have_content(question.title)
+    #questions must be in desc order by created time
   end
 
   scenario 'visitor views an individual question' do
-    user = FactoryGirl.create(:user)
-    sign_in_as(user)
+  #  user = FactoryGirl.create(:user)
+
     question = FactoryGirl.create(:question)
 
     visit '/'

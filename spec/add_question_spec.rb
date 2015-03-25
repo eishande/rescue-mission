@@ -13,8 +13,8 @@ feature 'visitor creates question', %Q{
 # - I must be presented with errors if I fill out the form incorrectly
 
   scenario 'add a valid question' do
-    user = FactoryGirl.create(:user)
-    sign_in_as(user)
+    #user = FactoryGirl.create(:user)
+
     question_title = "Who's on first?"
     visit '/questions/new'
 
@@ -28,8 +28,8 @@ feature 'visitor creates question', %Q{
   end
 
   scenario 'attempt to add an invalid question' do
-    user = FactoryGirl.create(:user)
-    sign_in_as(user)
+  #  user = FactoryGirl.create(:user)
+
     visit '/questions/new'
     click_button 'Create Question'
 

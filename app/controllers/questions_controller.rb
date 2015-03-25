@@ -5,8 +5,8 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @user = current_user
   end
-
   def create
     @question = Question.new(question_params)
     if @question.save

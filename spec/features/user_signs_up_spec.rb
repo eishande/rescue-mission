@@ -12,7 +12,7 @@ feature 'user registers', %Q{
   # * If I don't specify the required information, I am presented with
   #   an error message
 
-  scenario 'provide valid registration information' do
+  scenario 'provide valid registration information', focus:true do
     visit new_user_registration_path
 
     fill_in 'Email', with: 'john@example.com'
@@ -20,7 +20,7 @@ feature 'user registers', %Q{
     fill_in 'Password confirmation', with: 'password'
 
     click_button 'Sign up'
-
+    save_and_open_page
     expect(page).to have_content('Welcome! You have signed up successfully.')
     expect(page).to have_content('Sign Out')
   end
