@@ -4137,3 +4137,17 @@ Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 
 
 
 Started GET "/assets/application-378c8739237292dbbedfcfe67f3185f0.js?body=1" for ::1 at 2015-03-25 16:43:14 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DropIdentityModel (20150325204820)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (4.6ms)[0m  [1mDROP TABLE "identities"[0m
+PG::UndefinedTable: ERROR:  table "identities" does not exist
+: DROP TABLE "identities"
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DropIdentityModel (20150325204820)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (1.4ms)[0m  [1mDROP TABLE "identities"[0m
+PG::UndefinedTable: ERROR:  table "identities" does not exist
+: DROP TABLE "identities"
+  [1m[35m (0.3ms)[0m  ROLLBACK
