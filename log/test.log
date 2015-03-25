@@ -1836,3 +1836,71 @@ Processing by QuestionsController#index as HTML
   [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
 Completed 200 OK in 6324ms (Views: 6315.6ms | ActiveRecord: 3.5ms)
   [1m[35m (0.6ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (125.1ms)[0m  [1mDROP DATABASE IF EXISTS "rescue_mission_test"[0m
+  [1m[35m (441.1ms)[0m  CREATE DATABASE "rescue_mission_test" ENCODING = 'unicode'
+  [1m[36mSQL (2.8ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (24.2ms)[0m  CREATE TABLE "answers" ("id" serial primary key, "body" text NOT NULL, "user_id" integer NOT NULL, "question_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (5.7ms)[0m  [1mCREATE TABLE "questions" ("id" serial primary key, "title" character varying NOT NULL, "description" text, "user_id" integer NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (6.9ms)[0m  CREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "created_at" timestamp, "updated_at" timestamp, "remember_created_at" timestamp) 
+  [1m[36m (2.6ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (1.5ms)[0m  CREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")
+  [1m[36m (2.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.7ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36m (0.6ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150325205310')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150323172318')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150323172326')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150323172333')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150325192732')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150325194057')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150325194400')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150325200001')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150325204820')
+  [1m[35mActiveRecord::SchemaMigration Load (0.6ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+Started GET "/users/sign_up" for 127.0.0.1 at 2015-03-25 17:01:14 -0400
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.5ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (100.7ms)
+Completed 200 OK in 168ms (Views: 135.1ms | ActiveRecord: 5.9ms)
+Started POST "/users" for 127.0.0.1 at 2015-03-25 17:01:14 -0400
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"john@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.4ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (2.9ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'john@example.com' LIMIT 1
+  [1m[36mSQL (2.6ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "john@example.com"], ["encrypted_password", "$2a$04$fn72k5jrWsKD..6G.a4ONOmfcyzUNFw4CaCNKSWJ02Rx9dpgCBRGS"], ["created_at", "2015-03-25 21:01:14.502187"], ["updated_at", "2015-03-25 21:01:14.502187"]]
+  [1m[35m (0.3ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/
+Completed 302 Found in 42ms (ActiveRecord: 6.6ms)
+Started GET "/" for 127.0.0.1 at 2015-03-25 17:01:14 -0400
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (1.5ms)[0m  [1mSELECT "questions".* FROM "questions"  ORDER BY "questions"."created_at" ASC[0m
+  Rendered questions/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 19ms (Views: 6.3ms | ActiveRecord: 3.0ms)
+  [1m[35m (0.5ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+Started GET "/users/sign_up" for 127.0.0.1 at 2015-03-25 17:01:55 -0400
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.7ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (103.0ms)
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+Completed 200 OK in 7225ms (Views: 7197.0ms | ActiveRecord: 6.1ms)
+Started POST "/users" for 127.0.0.1 at 2015-03-25 17:02:03 -0400
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"john@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (1.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'john@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "john@example.com"], ["encrypted_password", "$2a$04$11ew3PjiqjoZgntYRiUKze939kN3EXazhZcNdjY/5ZMjQZetRMpVm"], ["created_at", "2015-03-25 21:02:03.056887"], ["updated_at", "2015-03-25 21:02:03.056887"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 29ms (ActiveRecord: 2.8ms)
+Started GET "/" for 127.0.0.1 at 2015-03-25 17:02:03 -0400
+Processing by QuestionsController#index as HTML
+  [1m[35mQuestion Load (1.4ms)[0m  SELECT "questions".* FROM "questions"  ORDER BY "questions"."created_at" ASC
+  Rendered questions/index.html.erb within layouts/application (5.5ms)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+Completed 200 OK in 9706ms (Views: 9694.4ms | ActiveRecord: 3.7ms)
+  [1m[35m (0.6ms)[0m  ROLLBACK

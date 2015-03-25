@@ -15,9 +15,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem "devise"
-gem 'omniauth'
-gem 'omniauth-github'
-gem 'omniauth-facebook'
+# gem 'omniauth'
+# gem 'omniauth-github'
+# gem 'omniauth-facebook'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
