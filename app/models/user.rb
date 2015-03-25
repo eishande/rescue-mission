@@ -4,8 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :provider, presence: true
-  validates :uid, presence: true
-  validates :username, presence: true
+  validates :uid, presence: true, uniqueness: { scope: provider }
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 
   has_many :questions
   has_many :answers
@@ -26,5 +27,4 @@ class User < ActiveRecord::Base
       avatar_url: auth.info.image
     )
   end
-
 end

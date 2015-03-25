@@ -4,6 +4,13 @@ Rails.application.routes.draw do
 
   resources :questions, only: [:index, :show, :new, :create]
 
+  resource :session, only: [:new, :create, :destroy] do
+    get "failure", on: :member
+  end
+
+  get "/auth/:provider/callback", to: "sessions#create"
+  get "/auth/failure", to: "sessions#failure"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
